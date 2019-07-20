@@ -10,6 +10,10 @@ executors:
     working_directory: /source
 
 jobs:
+   specialjob:
+     executor: ubuntu-build
+     steps:
+       - run: echo hi
    release:
      executor: ubuntu-build
      environment:
@@ -187,7 +191,7 @@ workflows:
   special:
     when: << pipeline.parameters.special >>
     jobs:
-      - asan
+      - specialjob
   all:
     jobs:
       - release:
